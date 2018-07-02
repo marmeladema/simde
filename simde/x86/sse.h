@@ -2168,7 +2168,8 @@ simde__m128
 simde_mm_undefined_ps (void) {
 #if defined(SIMDE_SSE_NATIVE) && \
   !defined(SIMDE_BUG_GCC_REV_208793) && \
-  !defined(__PGI)
+  !defined(__PGI) && \
+  !SIMDE_BUG_CLANG_BUILTIN_MISSING(__builtin_ia32_undef128)
   return SIMDE__M128_C(_mm_undefined_ps());
 #else
   return simde_mm_setzero_ps();

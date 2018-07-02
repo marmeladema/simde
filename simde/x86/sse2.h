@@ -3344,7 +3344,11 @@ simde_mm_ucomineq_sd (simde__m128d a, simde__m128d b) {
 SIMDE__FUNCTION_ATTRIBUTES
 simde__m128d
 simde_mm_undefined_pd (void) {
-#if defined(SIMDE_SSE2_NATIVE) && !defined(__PGI) && !defined(SIMDE_BUG_GCC_REV_208793)
+#if \
+    defined(SIMDE_SSE2_NATIVE) && \
+    !defined(__PGI) && \
+    !defined(SIMDE_BUG_GCC_REV_208793) && \
+    !SIMDE_BUG_CLANG_BUILTIN_MISSING(__builtin_ia32_undef128)
   return SIMDE__M128D_C(_mm_undefined_pd());
 #else
   return simde_mm_setzero_pd();
@@ -3354,7 +3358,11 @@ simde_mm_undefined_pd (void) {
 SIMDE__FUNCTION_ATTRIBUTES
 simde__m128i
 simde_mm_undefined_si128 (void) {
-#if defined(SIMDE_SSE2_NATIVE) && !defined(__PGI) && !defined(SIMDE_BUG_GCC_REV_208793)
+#if \
+    defined(SIMDE_SSE2_NATIVE) && \
+    !defined(__PGI) && \
+    !defined(SIMDE_BUG_GCC_REV_208793) && \
+    !SIMDE_BUG_CLANG_BUILTIN_MISSING(__builtin_ia32_undef128)
   return SIMDE__M128I_C(_mm_undefined_si128());
 #else
   return simde_mm_setzero_si128();
